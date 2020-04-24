@@ -9,6 +9,13 @@ import PopularMovies from '../screens/PopularMovies';
 import TopRatedMovies from '../screens/TopRatedMovies';
 import MovieDetails from '../screens/MovieDetails';
 
+const DetailsNavigator = createStackNavigator({
+    MovieDetails: MovieDetails
+}, {
+
+}
+);
+
 const FavoritesNavigator = createStackNavigator({
         Favorites: FavoritesMovies,
         MovieDetails: MovieDetails
@@ -26,8 +33,8 @@ const PopularNavigator = createStackNavigator({
 );
 
 const TopRatedNavigator = createStackNavigator({
-    TopRated: TopRatedMovies,
-    topDetails: MovieDetails
+        TopRated: TopRatedMovies,
+        topDetails: MovieDetails
     }, {
 
     }
@@ -41,13 +48,13 @@ const tabScreenConfig = {
         }
     },
     Top: {
-        screen: TopRatedNavigator,
+        screen: TopRatedMovies,
         navigationOptions: {
             tabBarLabel: 'Top Rated',
         }
     },
     Fav: {
-        screen: FavoritesNavigator,
+        screen: FavoritesMovies,
         navigationOptions: {
             tabBarLabel: 'Favorites',
         }
@@ -56,6 +63,7 @@ const tabScreenConfig = {
 
 const TopNavigator = createMaterialTopTabNavigator(tabScreenConfig,
   {
+    initialRouteName: 'Pop',
     tabBarPosition: 'top',
     swipeEnabled: true,
     animationEnabled: true,

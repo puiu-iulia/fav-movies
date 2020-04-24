@@ -2,14 +2,14 @@ import { GET_POPULAR, GET_TOPRATED, GET_FAVORITES } from '../actions/movies';
 import Movie from '../../models/movie';
 
 const initialState = {
-    movies: []
+    popularMovies: []
 };
 
 export default ( state = initialState, action ) => {
     switch (action.type) {
         case GET_POPULAR: 
             return {
-                movies: action.popularMovies
+                popularMovies: action.popularMovies
             };
         case GET_TOPRATED: {
             return {
@@ -18,4 +18,4 @@ export default ( state = initialState, action ) => {
         }
     }
     return state;
-}
+};
