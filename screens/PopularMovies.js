@@ -9,7 +9,6 @@ const PopularMovies = props => {
     const [isLoading, setIsLoading ]  = useState(false);
     const [error, setError ] = useState();
     const movies = useSelector(state => state.movies.popularMovies);
-    console.log(movies);
     const dispatch = useDispatch();
 
     const loadMovies = useCallback(async () => {

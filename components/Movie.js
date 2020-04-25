@@ -25,7 +25,7 @@ const Movie = props => {
 
 const styles = StyleSheet.create({
     movie: {
-        height: Dimensions.get('window').height/3,
+        height: Dimensions.get('window').height/2.7,
         width: Dimensions.get('window').width/2.15,
         marginLeft: 8,
         marginTop: 8

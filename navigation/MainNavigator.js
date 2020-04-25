@@ -61,26 +61,32 @@ const tabScreenConfig = {
     }
 };
 
-const TopNavigator = createMaterialTopTabNavigator(tabScreenConfig,
+const TopNavigator = createMaterialBottomTabNavigator(tabScreenConfig,
   {
-    initialRouteName: 'Pop',
-    tabBarPosition: 'top',
-    swipeEnabled: true,
-    animationEnabled: true,
+    // initialRouteName: 'Pop',
+    // tabBarPosition: 'top',
+    // swipeEnabled: true,
+    // animationEnabled: true,
+    // tabBarOptions: {
+    //   activeTintColor: '#FFFFFF',
+    //   inactiveTintColor: '#F8F8F8',
+    //   style: {
+    //     backgroundColor: '#633689',
+    //   },
+    //   labelStyle: {
+    //     textAlign: 'center',
+    //   },
+    //   indicatorStyle: {
+    //     borderBottomColor: '#87B56A',
+    //     borderBottomWidth: 2,
+    //   },
+    // },
     tabBarOptions: {
-      activeTintColor: '#FFFFFF',
-      inactiveTintColor: '#F8F8F8',
-      style: {
-        backgroundColor: '#633689',
-      },
-      labelStyle: {
-        textAlign: 'center',
-      },
-      indicatorStyle: {
-        borderBottomColor: '#87B56A',
-        borderBottomWidth: 2,
-      },
-    },
+        // labelStyle: {
+        //     fontFamily: 'open-sans-bold'
+        // },
+        activeTintColor: "#fff"
+    }
   }    
 );
 
