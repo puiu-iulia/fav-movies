@@ -28,8 +28,8 @@ const TopRatedMovies = props => {
         });
     }, [dispatch, loadMovies]);
 
-    const selectMovieHandler = () => {
-
+    const selectMovieHandler = (id, title) => {
+        props.navigation.navigate('TopDetails', {movieId: id, movieTitle: title })
     };
 
     if (error) {
@@ -57,7 +57,7 @@ const TopRatedMovies = props => {
                     <Movie
                         image={itemData.item.imageUrl}
                         onSelect={() => {
-                            selectItemHandler();
+                            selectMovieHandler(itemData.item.id, itemData.item.title);
                         }}
                     >
                     </Movie>    
@@ -73,8 +73,5 @@ const styles = StyleSheet.create({
     }
 });
 
-TopRatedMovies.navigationOptions = {
-    header: null
-}
 
 export default TopRatedMovies;

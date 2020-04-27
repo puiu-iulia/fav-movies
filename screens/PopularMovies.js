@@ -27,8 +27,8 @@ const PopularMovies = props => {
         });
     }, [dispatch, loadMovies]);
 
-    const selectMovieHandler = () => {
-
+    const selectMovieHandler = (id, title) => {
+        props.navigation.navigate('PopDetails', {movieId: id, movieTitle: title})
     };
 
     if (error) {
@@ -56,7 +56,7 @@ const PopularMovies = props => {
                     <Movie
                         image={itemData.item.imageUrl}
                         onSelect={() => {
-                            selectItemHandler();
+                            selectMovieHandler(itemData.item.id, itemData.item.title);
                         }}
                     >
                     </Movie>    
@@ -72,8 +72,7 @@ const styles = StyleSheet.create({
     }
 });
 
-PopularMovies.navigationOptions = {
-    header: null
-}
+
+
 
 export default PopularMovies;
