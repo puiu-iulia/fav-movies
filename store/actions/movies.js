@@ -24,6 +24,8 @@ export const fetchPopular = () => {
                         resData.results[key].title,
                         'https://image.tmdb.org/t/p/w500' + resData.results[key].poster_path,
                         resData.results[key].vote_average,
+                        resData.results[key].release_date,
+                        resData.results[key].overview
                     )
                 )
             }
@@ -59,6 +61,8 @@ export const fetchTopRated = () => {
                         resData.results[key].title,
                         'https://image.tmdb.org/t/p/w500' + resData.results[key].poster_path,
                         resData.results[key].vote_average,
+                        resData.results[key].release_date,
+                        resData.results[key].overview
                     )
                 )
             }
