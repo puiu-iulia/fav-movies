@@ -52,7 +52,6 @@ export const fetchTopRated = () => {
                 throw new Error ('Something went wrong');
             }
             const resData = await response.json();
-            console.log(resData);
             const topRatedMovies = [];
             for (const key in resData.results) {
                 topRatedMovies.push(
@@ -66,7 +65,6 @@ export const fetchTopRated = () => {
                     )
                 )
             }
-            console.log(topRatedMovies);
             dispatch({
                 type: GET_TOPRATED,
                 topRatedMovies: topRatedMovies
