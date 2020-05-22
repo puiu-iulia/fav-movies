@@ -11,7 +11,7 @@ const FavoritesMovies = props => {
 
     const [isLoading, setIsLoading ]  = useState(false);
     const [error, setError ] = useState();
-    const movies = useSelector(state => state.movies.popularMovies);
+    const movies = useSelector(state => state.movies.FavoritesMovies);
     console.log(movies);
     const dispatch = useDispatch();
 

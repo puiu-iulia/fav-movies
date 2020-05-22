@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, ScrollView, StyleSheet, Image, Text, Platform, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
 import Card from '../components/Card';
-import * as MovieActions from '../store/actions/movies';
+import * as movieActions from '../store/actions/movies';
 
 const MovieDetails = props => {
     const [isFavorite, setIsFavorite] = useState(false);
     const route = props.navigation.state.routeName;
     const movieId = props.navigation.getParam('movieId');
     let selectedMovie = null;
+    const dispatch = useDispatch();
     if (route === 'PopDetails') {
         selectedMovie = useSelector(state => 
             state.movies.popularMovies.find(movie => movie.id === movieId)
@@ -19,7 +20,30 @@ const MovieDetails = props => {
         selectedMovie = useSelector(state => 
             state.movies.topRatedMovies.find(movie => movie.id === movieId)
         );
+    } else if (route === 'MovieDetails') {
+        selectedMovie = useSelector(state => 
+            state.movies.favoriteMovies.find(movie => movie.id === movieId)
+        );
+        setIsFavorite(true);
     }
+
+    const addFavoriteHandler = useCallback(async ()  => {
+        try {
+            await dispatch(movieActions.addFavorite(movieId));
+        } catch (err) {
+            console.log(err);
+        }     
+        setIsFavorite(true);
+    }, [dispatch]);
+
+    const removeFavoriteHandler = useCallback(async ()  => {
+        try {
+            await dispatch(movieActions.removeFavorite(movieId));
+        } catch (err) {
+            console.log(err);
+        }     
+        setIsFavorite(false);
+    }, [dispatch]);
 
     let TouchableComponent = TouchableOpacity;
     if (Platform.OS === 'android' && Platform.Version >= 21) {
@@ -36,14 +60,10 @@ const MovieDetails = props => {
                     <Text>Rating: {selectedMovie.rating}/10</Text>
                     <Text>Year: {selectedMovie.releaseDate.slice(0, 4)}</Text>
                     <TouchableComponent
-                        onPress={
-                            () => {
-                                setIsFavorite(true);
-                            }
-                        } 
+                        onPress={(!isFavorite) ? addFavoriteHandler : removeFavoriteHandler} 
                         style={styles.touchable}>
                         <View style={styles.button}>
-                            <Text>Mark as Favorite</Text>
+                        <Text>{!isFavorite ? 'Mark as Favorite' : 'Remove from Favorites'}</Text>
                             {!isFavorite ?  (<Ionicons
                                 name='ios-star-outline' size={24} color={'#0d253f'}
                             />)  : ( <Ionicons
@@ -87,8 +107,7 @@ const styles = StyleSheet.create({
         padding: 8,
         borderRadius: 8,
         height: 56,
-        width: '100%',
-        maxWidth: 300,
+        width: 168,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#01b4e4', 
